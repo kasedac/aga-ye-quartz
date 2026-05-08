@@ -425,7 +425,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 return
               }
 
-              const text = firstChild.children[0].value.trimStart()
+              const text = firstChild.children[0].value
               const restOfTitle = firstChild.children.slice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
