@@ -23,7 +23,7 @@ export default ((userOpts?: Partial<ContentMetaOptions>) => {
 
       // 1. 投稿日 (Hugo-style priority)
       // published > date > created > system creation date
-      const createdRaw = fm?.published ?? fm?.date ?? fm?.created ?? fileData.dates?.created
+      const createdRaw = fm?.date ?? fm?.publishDate ?? fm?.created ?? fileData.dates?.created
       const createdDate = createdRaw ? new globalThis.Date(createdRaw) : undefined
       const isCreatedValid = createdDate && !isNaN(createdDate.getTime())
 
