@@ -18,7 +18,7 @@ const config: QuartzConfig = {
     locale: "ja-JP",
     baseUrl: "www.aga-ye.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
