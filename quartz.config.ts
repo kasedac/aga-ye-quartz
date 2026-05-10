@@ -13,7 +13,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "google",
+      tagId: "G-5RNWLFSCHR",
     },
     locale: "ja-JP",
     baseUrl: "www.aga-ye.com",
