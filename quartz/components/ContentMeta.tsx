@@ -1,20 +1,8 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { formatDate } from "./Date"
-import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
-import readingTime from "reading-time"
 
-interface ContentMetaOptions {
-  showReadingTime: boolean
-}
-
-const defaultOptions: ContentMetaOptions = {
-  showReadingTime: true,
-}
-
-export default ((userOpts?: Partial<ContentMetaOptions>) => {
-  const opts = { ...defaultOptions, ...userOpts }
-
+export default (() => {
   function ContentMetadata({ cfg, fileData, displayClass }: QuartzComponentProps) {
     const text = fileData.text
     if (text) {
@@ -35,22 +23,14 @@ export default ((userOpts?: Partial<ContentMetaOptions>) => {
 
       // 投稿日の追加
       if (isCreatedValid) {
-        segments.push(`投稿日: ${formatDate(createdDate, cfg.locale)}`)
+        segments.push(`投稿: ${formatDate(createdDate, cfg.locale)}`)
       }
 
       // 更新日の追加 (投稿日より新しい場合のみ表示)
       if (isModifiedValid && isCreatedValid) {
         if (modifiedDate.getTime() > createdDate.getTime()) {
-          segments.push(`更新日: ${formatDate(modifiedDate, cfg.locale)}`)
+          segments.push(`更新: ${formatDate(modifiedDate, cfg.locale)}`)
         }
-      }
-
-      // 読了時間の追加
-      if (opts.showReadingTime) {
-        const readingTimeMsg = i18n(cfg.locale).components.contentMeta.readingTime({
-          minutes: Math.ceil(readingTime(text).minutes),
-        })
-        segments.push(readingTimeMsg)
       }
 
       return (
